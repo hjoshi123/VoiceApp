@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         makeToast(event);
+        return true;
     }
 
 
