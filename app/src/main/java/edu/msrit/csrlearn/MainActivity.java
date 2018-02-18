@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import static android.view.KeyEvent.KEYCODE_NUMPAD_ENTER;
+
 public class MainActivity extends AppCompatActivity {
 
     private LinearLayout linearLayout;
@@ -55,9 +57,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
+        Log.d("Key", event.toString());
         switch (keyCode){
             case KeyEvent.KEYCODE_ENTER:
-                Log.d("MainActivity","Enter was pressed");
+                Log.d("MainActivity","Main Enter was pressed");
+                playAudio();
+                return true;
+
+            case KEYCODE_NUMPAD_ENTER:
+                Log.d("MainActivity","Numpad Enter was pressed");
                 playAudio();
                 return true;
         }
