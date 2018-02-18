@@ -3,6 +3,7 @@ package edu.msrit.csrlearn;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.KeyListener;
@@ -12,13 +13,20 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+
+
+import java.util.Locale;
+
 import static android.view.KeyEvent.KEYCODE_NUMPAD_ENTER;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private LinearLayout linearLayout;
     private MediaPlayer mMediaPlayer;
     private AudioManager mAudioManager;
+    private String toSpeak = "";
+    private TextToSpeech tts;
 
     private AudioManager.OnAudioFocusChangeListener mAudioChangeListner =
             new AudioManager.OnAudioFocusChangeListener(){
@@ -51,8 +59,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         linearLayout = findViewById(R.id.linear_layout);
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status == TextToSpeech.SUCCESS){
+                    int result=tts.setLanguage(Locale.US);
+                    if(result==TextToSpeech.LANG_MISSING_DATA ||
+                            result==TextToSpeech.LANG_NOT_SUPPORTED){
+                        Log.e("error", "This Language is not supported");
+                    }
+                    else{
+                        ConvertTextToSpeech(toSpeak);
+                    }
+                }
+                else
+                    Log.e("error", "Initilization Failed!");
+            }
+        });
+        tts.setLanguage(Locale.US);
+        tts.speak("Text to say aloud", TextToSpeech.QUEUE_ADD, null);
+
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+    }
+
+    private void ConvertTextToSpeech(String text) {
+        // TODO Auto-generated method stub
+        if(text==null||"".equals(text))
+        {
+            text = "Content not available";
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+        }else
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 
     @Override
@@ -61,13 +99,22 @@ public class MainActivity extends AppCompatActivity {
         switch (keyCode){
             case KeyEvent.KEYCODE_ENTER:
                 Log.d("MainActivity","Main Enter was pressed");
-                playAudio();
+                //playAudio();
+                ConvertTextToSpeech(toSpeak);
+                toSpeak = "";
                 return true;
 
             case KEYCODE_NUMPAD_ENTER:
                 Log.d("MainActivity","Numpad Enter was pressed");
-                playAudio();
+                //playAudio();
+                ConvertTextToSpeech(toSpeak);
+                toSpeak = "";
                 return true;
+
+            default:
+                char unicodeChar = (char)event.getUnicodeChar();
+                toSpeak = toSpeak + unicodeChar + "";
+                Log.d("Speak", toSpeak);
         }
         return false;
     }
