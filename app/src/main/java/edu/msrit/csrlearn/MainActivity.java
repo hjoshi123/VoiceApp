@@ -14,11 +14,14 @@ import static android.view.KeyEvent.KEYCODE_NUMPAD_ENTER;
 public class MainActivity extends AppCompatActivity {
     private String toSpeak = "";
     private TextToSpeech tts;
+    private StateMaker SM;
+    private State mState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SM = new StateMaker(getApplicationContext());
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("error", "This Language is not supported");
                     }
                     else{
-                        toSpeak = "Enter the result of 7 + 2";
+                        toSpeak = "Hello World";
                         convertTextToSpeech(toSpeak);
                     }
                 }
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         });
 //        tts.setLanguage(Locale.US);
 //        tts.speak("Text to say aloud", TextToSpeech.QUEUE_ADD, null,null);
+
+        mState = SM.getState("state1.json");
     }
 
     private void convertTextToSpeech(String text) {
@@ -49,29 +54,43 @@ public class MainActivity extends AppCompatActivity {
             tts.speak(text, TextToSpeech.QUEUE_FLUSH, null,null);
     }
 
+    public String getKeyPressed(int keycode) {
+        switch (keycode) {
+            case KeyEvent.KEYCODE_ENTER:
+            case KeyEvent.KEYCODE_NUMPAD_ENTER:
+                return "enter";
+            case KeyEvent.KEYCODE_1:
+            case KeyEvent.KEYCODE_NUMPAD_1:
+                return "1";
+            default:
+                return "*";
+        }
+    }
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         Log.d("Key", event.toString());
-        switch (keyCode){
-            case KeyEvent.KEYCODE_ENTER:
-                Log.d("MainActivity","Main Enter was pressed");
-                convertTextToSpeech(toSpeak);
-                toSpeak = "";
-                return true;
-            case KEYCODE_NUMPAD_ENTER:
-                Log.d("MainActivity","Numpad Enter was pressed");
-                convertTextToSpeech(toSpeak);
-                toSpeak = "";
-                return true;
-            case KeyEvent.KEYCODE_NUMPAD_9:
-                toSpeak = "Congrats!! You Entered the correct answer";
-                convertTextToSpeech(toSpeak);
-                return true;
+        String key = getKeyPressed(keyCode);
+        //convertTextToSpeech(mState.speakOnStart);
+        boolean flag = false;
+        for (Hashmap object: mState.keys) {
+            if (object.getKey().equals(key)) {
+                convertTextToSpeech(object.getString());
+                mState = SM.getState(object.getValue());
+                flag = true;
+                break;
+            }
 
-            default:
-                toSpeak = "Sorry wrong answer";
-                convertTextToSpeech(toSpeak);
         }
+        if (flag == false) {
+            for (Hashmap object:mState.keys) {
+                if (object.getKey().equals("*")) {
+                    convertTextToSpeech(object.getString());
+                    mState = SM.getState(object.getValue());
+                }
+            }
+        }
+        convertTextToSpeech(mState.speakOnStart);
         return false;
     }
 }

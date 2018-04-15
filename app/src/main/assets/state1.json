@@ -1,0 +1,10 @@
+{
+  "string_to_speak": "Yolo",
+  "hashmap": [
+    {"key":"1", "value":"learn_keyboard.json", "string":"Congrats, you selected to learn the keyboard"},
+    {"key":"2", "value":"play_with_0-9.json", "string":"Congrats, you selected to learn the 0-9 addition"},
+    {"key":"3", "value":"play_with_1_digit.json", "string":"Congrats, you selected to play with one digit addition"},
+    {"key":"4", "value":"play_with_1_and_2_digit.json", "string":"Congrats, you selected to play with one and two digit addition"},
+    {"key":"5", "value":"play_with_2_digit.json", "string":"Congrats, you selected to play with 2 digit addition"}
+  ]
+}
