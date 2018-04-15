@@ -8,11 +8,11 @@ import java.util.List;
  * Created by HemantJ on 15/04/18.
  */
 
-public class State {
+class State {
 
-    public String speakOnStart;
+    String speakOnStart;
 
-    public List<Hashmap> keys = new ArrayList<Hashmap>();
+    List<Hashmap> keys = new ArrayList<Hashmap>();
 
 
 }

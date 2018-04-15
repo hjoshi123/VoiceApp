@@ -32,18 +32,14 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("error", "This Language is not supported");
                     }
                     else{
-                        toSpeak = "Hello World";
-                        convertTextToSpeech(toSpeak);
+                        mState = SM.getState("state1.json");
+                        convertTextToSpeech(mState.speakOnStart);
                     }
                 }
                 else
                     Log.e("error", "Initilization Failed!");
             }
         });
-//        tts.setLanguage(Locale.US);
-//        tts.speak("Text to say aloud", TextToSpeech.QUEUE_ADD, null,null);
-
-        mState = SM.getState("state1.json");
     }
 
     private void convertTextToSpeech(String text) {
@@ -54,14 +50,47 @@ public class MainActivity extends AppCompatActivity {
             tts.speak(text, TextToSpeech.QUEUE_FLUSH, null,null);
     }
 
+    /**
+     *
+     * @param keycode keycode from the onKeyUp method
+     * @return String the keys of the json files
+     */
+    //TODO think of optimizing this
     public String getKeyPressed(int keycode) {
         switch (keycode) {
             case KeyEvent.KEYCODE_ENTER:
             case KeyEvent.KEYCODE_NUMPAD_ENTER:
                 return "enter";
+            case KeyEvent.KEYCODE_0:
+            case KeyEvent.KEYCODE_NUMPAD_0:
+                return "0";
             case KeyEvent.KEYCODE_1:
             case KeyEvent.KEYCODE_NUMPAD_1:
                 return "1";
+            case KeyEvent.KEYCODE_2:
+            case KeyEvent.KEYCODE_NUMPAD_2:
+                return "2";
+            case KeyEvent.KEYCODE_3:
+            case KeyEvent.KEYCODE_NUMPAD_3:
+                return "3";
+            case KeyEvent.KEYCODE_4:
+            case KeyEvent.KEYCODE_NUMPAD_4:
+                return "4";
+            case KeyEvent.KEYCODE_5:
+            case KeyEvent.KEYCODE_NUMPAD_5:
+                return "5";
+            case KeyEvent.KEYCODE_6:
+            case KeyEvent.KEYCODE_NUMPAD_6:
+                return "6";
+            case KeyEvent.KEYCODE_7:
+            case KeyEvent.KEYCODE_NUMPAD_7:
+                return "7";
+            case KeyEvent.KEYCODE_8:
+            case KeyEvent.KEYCODE_NUMPAD_8:
+                return "8";
+            case KeyEvent.KEYCODE_9:
+            case KeyEvent.KEYCODE_NUMPAD_9:
+                return "9";
             default:
                 return "*";
         }
@@ -71,21 +100,22 @@ public class MainActivity extends AppCompatActivity {
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         Log.d("Key", event.toString());
         String key = getKeyPressed(keyCode);
-        //convertTextToSpeech(mState.speakOnStart);
         boolean flag = false;
         for (Hashmap object: mState.keys) {
             if (object.getKey().equals(key)) {
-                convertTextToSpeech(object.getString());
+                Log.i("MainActivity", object.getString());
+                toSpeak = object.getString();
+                tts.speak(toSpeak, TextToSpeech.QUEUE_ADD, null, null);
                 mState = SM.getState(object.getValue());
                 flag = true;
                 break;
             }
-
         }
-        if (flag == false) {
+        if (!flag) {
             for (Hashmap object:mState.keys) {
                 if (object.getKey().equals("*")) {
-                    convertTextToSpeech(object.getString());
+                    toSpeak = object.getString();
+                    convertTextToSpeech(toSpeak);
                     mState = SM.getState(object.getValue());
                 }
             }

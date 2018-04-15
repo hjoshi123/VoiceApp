@@ -23,24 +23,22 @@ import javax.xml.parsers.DocumentBuilderFactory;
  * Created by HemantJ on 15/04/18.
  */
 
-public class StateMaker {
-    Context mContext;
-    String json = null;
+class StateMaker {
+    private Context mContext;
 
     StateMaker (Context context) {
         this.mContext = context;
     }
 
-    public State getState(String fileName) {
+    State getState(String fileName) {
         State newState = new State();
         try {
-
             InputStream is = mContext.getAssets().open(fileName);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
-            json = new String(buffer, "UTF-8");
+            String json = new String(buffer, "UTF-8");
             Data data = new Gson().fromJson(json, Data.class);
             Log.d("to_speak", data.getStringToSpeak());
             Log.d("to_speak", data.getHashmap().get(0).getKey());
@@ -48,7 +46,7 @@ public class StateMaker {
             newState.speakOnStart = data.getStringToSpeak();
             newState.keys = data.getHashmap();
             return newState;
-        } catch (Exception e){
+        } catch (IOException e){
             e.printStackTrace();
             newState.speakOnStart = "we are dead";
             newState.keys = null;

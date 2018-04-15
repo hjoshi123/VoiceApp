@@ -1,5 +1,5 @@
 {
-  "string_to_speak": "Yolo",
+  "string_to_speak": "Welcome to the CSR Learn App. Press 1 for learning keyboard. Press 2 for playing with 0 to 9",
   "hashmap": [
     {"key":"1", "value":"learn_keyboard.json", "string":"Congrats, you selected to learn the keyboard"},
     {"key":"2", "value":"play_with_0-9.json", "string":"Congrats, you selected to learn the 0-9 addition"},
