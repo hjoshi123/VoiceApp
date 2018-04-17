@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
     private void convertTextToSpeech(String text) {
         if(text==null||"".equals(text)) {
             text = "Content not available";
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null,null);
+            tts.speak(text, TextToSpeech.QUEUE_ADD, null, null);
         } else
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null,null);
+            tts.speak(text, TextToSpeech.QUEUE_ADD, null,null);
     }
 
     /**
