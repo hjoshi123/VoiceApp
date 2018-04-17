@@ -40,8 +40,6 @@ class StateMaker {
             is.close();
             String json = new String(buffer, "UTF-8");
             Data data = new Gson().fromJson(json, Data.class);
-            Log.d("to_speak", data.getStringToSpeak());
-            Log.d("to_speak", data.getHashmap().get(0).getKey());
 
             newState.speakOnStart = data.getStringToSpeak();
             newState.keys = data.getHashmap();

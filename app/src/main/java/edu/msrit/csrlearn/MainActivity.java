@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
      * @param keycode keycode from the onKeyUp method
      * @return String the keys of the json files
      */
-    //TODO think of optimizing this
+    //TODO think of optimizing this -- How will you optimize this?
     public String getKeyPressed(int keycode) {
         switch (keycode) {
             case KeyEvent.KEYCODE_ENTER:
@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if (!flag) {
+            Log.i("to_speak", "* case activated");
             for (Hashmap object:mState.keys) {
                 if (object.getKey().equals("*")) {
                     toSpeak = object.getString();

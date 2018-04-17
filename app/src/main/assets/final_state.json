@@ -1,5 +1,5 @@
 {
-  "string_to_speak": "Thank You for testing the app with Hemant Joshi. Press any key to go back to the menu",
+  "string_to_speak": "Thank You for testing the app with Aditya. Press any key to go back to the menu",
   "hashmap": [
     {"key":"1", "value":"state1.json", "string":"Let's try again"},
     {"key":"2", "value":"state1.json", "string":"Let's try again"},
