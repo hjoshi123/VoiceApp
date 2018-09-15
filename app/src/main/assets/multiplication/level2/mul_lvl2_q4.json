@@ -1,0 +1,7 @@
+{
+  "string_to_speak": "what is 8 * 2 ?",
+  "hashmap": [
+      {"key":"16", "value":"multiplication/level2/mul_lvl2_q5.json", "string":"Congrats correct answer"},
+      {"key":"*", "value":"multiplication/level2/mul_lvl2_q5.json", "string":"wrong answer"}
+  ]
+}

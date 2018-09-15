@@ -1,0 +1,7 @@
+{
+  "string_to_speak": "what is 10 - 1 ?",
+  "hashmap": [
+      {"key":"9", "value":"subtraction/level2/sub_lvl2_q2.json", "string":"Congrats correct answer"},
+      {"key":"*", "value":"subtraction/level2/sub_lvl2_q2.json", "string":"wrong answer"}
+  ]
+}

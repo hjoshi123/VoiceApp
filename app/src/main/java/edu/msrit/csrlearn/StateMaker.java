@@ -40,10 +40,10 @@ class StateMaker {
             is.close();
             String json = new String(buffer, "UTF-8");
             Data data = new Gson().fromJson(json, Data.class);
-
             newState.speakOnStart = data.getStringToSpeak();
             newState.keys = data.getHashmap();
             return newState;
+
         } catch (IOException e){
             e.printStackTrace();
             newState.speakOnStart = "we are dead";

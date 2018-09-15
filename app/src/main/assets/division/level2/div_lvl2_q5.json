@@ -1,0 +1,7 @@
+{
+  "string_to_speak": "what is 63 / 7 ?",
+  "hashmap": [
+      {"key":"9", "value":"division/level2/div_lvl2_q6.json", "string":"Congrats correct answer"},
+      {"key":"*", "value":"division/level2/div_lvl2_q6.json", "string":"wrong answer"}
+  ]
+}

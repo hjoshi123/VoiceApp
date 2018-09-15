@@ -1,0 +1,7 @@
+{
+  "string_to_speak": "what is 25 / 5 ?",
+  "hashmap": [
+      {"key":"5", "value":"division/level3/div_lvl3_q5.json", "string":"Congrats correct answer"},
+      {"key":"*", "value":"division/level3/div_lvl3_q5.json", "string":"wrong answer"}
+  ]
+}

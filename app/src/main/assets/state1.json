@@ -1,10 +1,11 @@
 {
-  "string_to_speak": "Welcome to the CSR Learn App. Press 1 for learning keyboard. Press 2 for playing with 0 to 9",
+  "string_to_speak": "Welcome to the CSR Learn App. Press 1 for learning keyboard. Press 2 for Addition, 3 for subtraction, 4 for multiplication, 5 for division",
   "hashmap": [
-    {"key":"1", "value":"learn_keyboard.json", "string":"Congrats, you selected to learn the keyboard"},
-    {"key":"2", "value":"play_with_0-9.json", "string":"Congrats, you selected to learn the 0-9 addition"},
-    {"key":"3", "value":"play_with_1_digit.json", "string":"Congrats, you selected to play with one digit addition"},
-    {"key":"4", "value":"play_with_1_and_2_digit.json", "string":"Congrats, you selected to play with one and two digit addition"},
-    {"key":"5", "value":"play_with_2_digit.json", "string":"Congrats, you selected to play with 2 digit addition"}
+    {"key":"1", "value":"learn_keyboard.json", "string":""},
+    {"key":"2", "value":"addition/menu.json", "string":"Congrats, you selected to learn addition"},
+    {"key":"3", "value":"subtraction/menu.json", "string":"Congrats, you selected to learn subtraction"},
+    {"key":"4", "value":"multiplication/menu.json", "string":"Congrats, you selected to learn multiplication"},
+    {"key":"5", "value":"division/menu.json", "string":"Congrats, you selected to learn division"},
+    {"key":"*", "value":"state1.json", "string":"Unidentified input, please try again"}
   ]
 }

@@ -1,0 +1,9 @@
+{
+  "string_to_speak": "Press 1 for easy multiplication, 2 for moderate multiplication and 3 for advanced multiplication",
+  "hashmap": [
+    {"key":"1", "value":"multiplication/level1/mul_lvl1_q1.json", "string":""},
+    {"key":"2", "value":"multiplication/level2/mul_lvl2_q1.json", "string":""},
+    {"key":"3", "value":"multiplication/level3/mul_lvl3_q1.json", "string":""},
+    {"key":"*", "value":"multiplication/menu.json", "string":"Wrong input, try again"}
+  ]
+}
