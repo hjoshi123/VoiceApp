@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.TextView;
 
 
 import java.util.Locale;
@@ -14,11 +15,18 @@ import static android.view.KeyEvent.KEYCODE_NUMPAD_ENTER;
 public class MainActivity extends AppCompatActivity {
     private String toSpeak = "";
     private TextToSpeech tts;
+    private StateMaker SM;
+    private State mState;
+    private String input = "";
+    private TextView questionText, inputText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        questionText = findViewById(R.id.question);
+        inputText = findViewById(R.id.input);
+        SM = new StateMaker(getApplicationContext());
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -29,49 +37,77 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("error", "This Language is not supported");
                     }
                     else{
-                        toSpeak = "Enter the result of 7 + 2";
-                        convertTextToSpeech(toSpeak);
+                        mState = SM.getState("state1.json");
+                        convertTextToSpeech(mState.speakOnStart);
                     }
                 }
                 else
                     Log.e("error", "Initilization Failed!");
             }
         });
-//        tts.setLanguage(Locale.US);
-//        tts.speak("Text to say aloud", TextToSpeech.QUEUE_ADD, null,null);
     }
 
     private void convertTextToSpeech(String text) {
         if(text==null||"".equals(text)) {
             text = "Content not available";
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null,null);
+            tts.speak(text, TextToSpeech.QUEUE_ADD, null, null);
         } else
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null,null);
+            tts.speak(text, TextToSpeech.QUEUE_ADD, null,null);
     }
+
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        Log.d("Key", event.toString());
-        switch (keyCode){
-            case KeyEvent.KEYCODE_ENTER:
-                Log.d("MainActivity","Main Enter was pressed");
-                convertTextToSpeech(toSpeak);
-                toSpeak = "";
-                return true;
-            case KEYCODE_NUMPAD_ENTER:
-                Log.d("MainActivity","Numpad Enter was pressed");
-                convertTextToSpeech(toSpeak);
-                toSpeak = "";
-                return true;
-            case KeyEvent.KEYCODE_NUMPAD_9:
-                toSpeak = "Congrats!! You Entered the correct answer";
-                convertTextToSpeech(toSpeak);
-                return true;
 
-            default:
-                toSpeak = "Sorry wrong answer";
-                convertTextToSpeech(toSpeak);
+        Log.d("Key", event.toString() + "\n" + keyCode);
+        String key = KeyFinder.getKeyPressed(keyCode);
+        boolean flag = false;
+
+        if (key.equals("enter") && !input.equals("")) {
+            for (Hashmap object : mState.keys) {
+                if (object.getKey().equals(input)) {
+                    Log.i("MainActivity", object.getString());
+                    toSpeak = object.getString();
+                    tts.speak(toSpeak, TextToSpeech.QUEUE_ADD, null, null);
+                    mState = SM.getState(object.getValue());
+                    flag = true;
+                    break;
+                }
+
+            }
+
+
+
+            if (!flag) {
+                Log.i("to_speak", "* case activated");
+                for (Hashmap object : mState.keys) {
+                    if (object.getKey().equals("*")) {
+                        toSpeak = object.getString();
+                        convertTextToSpeech(toSpeak);
+                        mState = SM.getState(object.getValue());
+                    }
+                }
+            }
+
+            input = "";
+            convertTextToSpeech(mState.speakOnStart);
+
         }
+
+        else {
+            input = input + key;
+        }
+
+
+        updateScreen();
+
         return false;
     }
+
+    void updateScreen() {
+        questionText.setText(mState.speakOnStart);
+        inputText.setText(input);
+    }
+
+
 }

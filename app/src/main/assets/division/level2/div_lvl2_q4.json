@@ -1,0 +1,7 @@
+{
+  "string_to_speak": "what is 45 / 9 ?",
+  "hashmap": [
+      {"key":"5", "value":"division/level2/div_lvl2_q5.json", "string":"Congrats correct answer"},
+      {"key":"*", "value":"division/level2/div_lvl2_q5.json", "string":"wrong answer"}
+  ]
+}

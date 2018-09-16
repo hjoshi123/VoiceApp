@@ -1,0 +1,7 @@
+{
+  "string_to_speak": "what is 27 - 11 ?",
+  "hashmap": [
+      {"key":"16", "value":"subtraction/level3/sub_lvl3_q6.json", "string":"Congrats correct answer"},
+      {"key":"*", "value":"subtraction/level3/sub_lvl3_q6.json", "string":"wrong answer"}
+  ]
+}

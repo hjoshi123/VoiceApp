@@ -1,0 +1,7 @@
+{
+  "string_to_speak": "what is 12 / 6 ?",
+  "hashmap": [
+      {"key":"2", "value":"division/level2/div_lvl2_q3.json", "string":"Congrats correct answer"},
+      {"key":"*", "value":"division/level2/div_lvl2_q3.json", "string":"wrong answer"}
+  ]
+}

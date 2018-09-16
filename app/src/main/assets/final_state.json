@@ -1,0 +1,16 @@
+{
+  "string_to_speak": "Thank You for testing the app with Aditya. Press any key to go back to the menu",
+  "hashmap": [
+    {"key":"1", "value":"state1.json", "string":"Let's try again"},
+    {"key":"2", "value":"state1.json", "string":"Let's try again"},
+    {"key":"3", "value":"state1.json", "string":"Let's try again"},
+    {"key":"4", "value":"state1.json", "string":"Let's try again"},
+    {"key":"5", "value":"state1.json", "string":"Let's try again"},
+    {"key":"6", "value":"state1.json", "string":"Let's try again"},
+    {"key":"7", "value":"state1.json", "string":"Let's try again"},
+    {"key":"8", "value":"state1.json", "string":"Let's try again"},
+    {"key":"9", "value":"state1.json", "string":"Let's try again"},
+    {"key":"0", "value":"state1.json", "string":"Let's try again"},
+    {"key":"*", "value":"state1.json", "string":"Let's try again"}
+  ]
+}
