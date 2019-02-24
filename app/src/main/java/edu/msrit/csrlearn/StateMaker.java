@@ -11,6 +11,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
@@ -33,7 +34,7 @@ class StateMaker {
     State getState(String fileName) {
         State newState = new State();
         try {
-            InputStream is = mContext.getAssets().open(fileName);
+            FileInputStream is = new FileInputStream(fileName);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);

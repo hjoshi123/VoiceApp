@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Locale;
 
 import static android.view.KeyEvent.KEYCODE_NUMPAD_ENTER;
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private StateMaker SM;
     private State mState;
     private String input = "";
+    private FileInputStream fileInputStream;
     private TextView questionText, inputText;
 
     @Override
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         questionText = findViewById(R.id.question);
         inputText = findViewById(R.id.input);
 
+        SM = new StateMaker(getApplicationContext());
 
         // Creating own/private directory where all json files will be stored
         File mediaStorage = new File(Environment.getExternalStorageDirectory(), "own");
@@ -45,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         if (mediaStorage.exists())
             readDirectoryContents();
 
-        SM = new StateMaker(getApplicationContext());
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -86,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
                     return file.isFile();
                 }
             });
+            Log.d("MainAcListing", list[0].getPath());
+            for (File f : list) {
+                State helloState = SM.getState(f.getPath());
+                Log.d("MainAcContent", helloState.speakOnStart);
+            }
         }
     }
 
