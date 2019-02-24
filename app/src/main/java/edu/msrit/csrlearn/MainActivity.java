@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         SM = new StateMaker(getApplicationContext());
 
-        // Creating own/private directory where all json files will be stored
         File mediaStorage = new File(Environment.getExternalStorageDirectory(), "own");
         if (!mediaStorage.exists()) {
             if (!mediaStorage.mkdirs()) {
@@ -74,6 +73,20 @@ public class MainActivity extends AppCompatActivity {
         String path = Environment.getExternalStorageDirectory() + "/own";
         File directory = new File(path);
 
+        // Reading files inside root directory
+        File[] files = directory.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.isFile();
+            }
+        });
+
+        for (File f : files) {
+            State helloState = SM.getState(f.getPath());
+            Log.d("MainAcContent", helloState.speakOnStart);
+        }
+
+        // Reading files inside sub directory of the root
         File[] directories = directory.listFiles(new FileFilter() {
             @Override
             public boolean accept(File file) {
@@ -92,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             });
             Log.d("MainAcListing", list[0].getPath());
             for (File f : list) {
+                Log.d("MainRoot", f.getParent());
                 State helloState = SM.getState(f.getPath());
                 Log.d("MainAcContent", helloState.speakOnStart);
             }
