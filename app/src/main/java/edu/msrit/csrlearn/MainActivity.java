@@ -49,27 +49,28 @@ public class MainActivity extends AppCompatActivity {
         if (mediaStorage.exists())
             readDirectoryContents();
 
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status == TextToSpeech.SUCCESS){
-                    int result=tts.setLanguage(Locale.US);
-                    if(result==TextToSpeech.LANG_MISSING_DATA ||
-                            result==TextToSpeech.LANG_NOT_SUPPORTED){
-                        Log.e("error", "This Language is not supported");
+            tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+                @Override
+                public void onInit(int status) {
+                    if(status == TextToSpeech.SUCCESS){
+                        int result=tts.setLanguage(Locale.US);
+                        if(result==TextToSpeech.LANG_MISSING_DATA ||
+                                result==TextToSpeech.LANG_NOT_SUPPORTED){
+                            Log.e("error", "This Language is not supported");
+                        }
+                        else{
+                            mState = getFileState("state1.json");
+                            assert mState != null;
+                            convertTextToSpeech(mState.speakOnStart);
+                        }
                     }
-                    else{
-                        mState = SM.getState("state1.json");
-                        convertTextToSpeech(mState.speakOnStart);
-                    }
+                    else
+                        Log.e("error", "Initilization Failed!");
                 }
-                else
-                    Log.e("error", "Initilization Failed!");
-            }
-        });
+            });
     }
 
-    private void readDirectoryContents() {
+    private State getFileState(String fileName) {
         String path = Environment.getExternalStorageDirectory() + "/own";
         File directory = new File(path);
 
@@ -82,9 +83,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         for (File f : files) {
-            State helloState = SM.getState(f.getPath());
-            Log.d("MainAcContent", helloState.speakOnStart);
+            if (f.getName().equals(fileName)) {
+                State helloState = SM.getState(f.getPath());
+                Log.d("MainAcContent", helloState.speakOnStart);
+                return helloState;
+            }
         }
+        return null;
+    }
+
+    private void readDirectoryContents() {
+        String path = Environment.getExternalStorageDirectory() + "/own";
+        File directory = new File(path);
 
         // Reading files inside sub directory of the root
         File[] directories = directory.listFiles(new FileFilter() {
@@ -103,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
                     return file.isFile();
                 }
             });
-            Log.d("MainAcListing", list[0].getPath());
             for (File f : list) {
                 Log.d("MainRoot", f.getParent());
                 State helloState = SM.getState(f.getPath());
