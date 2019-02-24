@@ -3,5 +3,6 @@
   "hashmap": [
       {"key":"6", "value":"addition/level1/add_lvl1_q4.json", "string":"Congrats correct answer"},
       {"key":"*", "value":"addition/level1/add_lvl1_q4.json", "string":"wrong answer"}
-  ]
+  ],
+  "uid":"add_lvl1_1"
 }

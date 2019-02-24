@@ -1,13 +1,17 @@
 package edu.msrit.csrlearn;
 
+import android.os.Environment;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import java.io.File;
+import java.io.FileFilter;
 import java.util.Locale;
 
 import static android.view.KeyEvent.KEYCODE_NUMPAD_ENTER;
@@ -26,6 +30,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         questionText = findViewById(R.id.question);
         inputText = findViewById(R.id.input);
+
+
+        // Creating own/private directory where all json files will be stored
+        File mediaStorage = new File(Environment.getExternalStorageDirectory(), "own");
+        if (!mediaStorage.exists()) {
+            if (!mediaStorage.mkdirs()) {
+                Log.d("MainActivity", "Failed to create directory");
+                Toast.makeText(this, "Failed to create directory", Toast.LENGTH_SHORT)
+                        .show();
+                return;
+            }
+        }
+        if (mediaStorage.exists())
+            readDirectoryContents();
+
         SM = new StateMaker(getApplicationContext());
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -47,6 +66,29 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void readDirectoryContents() {
+        String path = Environment.getExternalStorageDirectory() + "/own";
+        File directory = new File(path);
+
+        File[] directories = directory.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.isDirectory();
+            }
+        });
+
+        for (File directory1 : directories) {
+            Log.d("MainAc", directory1.getName());
+            File file = new File(Environment.getExternalStorageDirectory() + "/own/" + directory1.getName());
+            File[] list = file.listFiles(new FileFilter() {
+                @Override
+                public boolean accept(File file) {
+                    return file.isFile();
+                }
+            });
+        }
+    }
+
     private void convertTextToSpeech(String text) {
         if(text==null||"".equals(text)) {
             text = "Content not available";
@@ -55,10 +97,8 @@ public class MainActivity extends AppCompatActivity {
             tts.speak(text, TextToSpeech.QUEUE_ADD, null,null);
     }
 
-
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-
         Log.d("Key", event.toString() + "\n" + keyCode);
         String key = KeyFinder.getKeyPressed(keyCode);
         boolean flag = false;
@@ -76,8 +116,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-
-
             if (!flag) {
                 Log.i("to_speak", "* case activated");
                 for (Hashmap object : mState.keys) {
@@ -88,19 +126,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
-
             input = "";
             convertTextToSpeech(mState.speakOnStart);
-
-        }
-
-        else {
+        } else {
             input = input + key;
         }
-
-
         updateScreen();
-
         return false;
     }
 
@@ -108,6 +139,4 @@ public class MainActivity extends AppCompatActivity {
         questionText.setText(mState.speakOnStart);
         inputText.setText(input);
     }
-
-
 }

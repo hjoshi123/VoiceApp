@@ -1,7 +1,8 @@
 {
   "string_to_speak": "what is 5 + 7 ?",
   "hashmap": [
-      {"key":"12", "value":"addition/level2/add_lvl2_q6.json", "string":"Congrats correct answer"},
-      {"key":"*", "value":"addition/level2/add_lvl2_q6.json", "string":"wrong answer"}
-  ]
+      {"key":"12", "value":"state1.json", "string":"Congrats correct answer"},
+      {"key":"*", "value":"state1.json", "string":"wrong answer"}
+  ],
+  "uid":"add_lvl2_1"
 }
