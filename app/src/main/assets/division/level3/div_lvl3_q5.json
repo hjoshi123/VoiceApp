@@ -1,8 +1,0 @@
-{
-  "string_to_speak": "what is 40 / 8 ?",
-  "hashmap": [
-      {"key":"5", "value":"state1.json", "string":"Congrats correct answer"},
-      {"key":"*", "value":"state1.json", "string":"wrong answer"}
-  ],
-  "uid":"div_lvl3_1"
-}

@@ -1,8 +1,0 @@
-{
-  "string_to_speak": "what is 2 / 1 ?",
-  "hashmap": [
-      {"key":"2", "value":"division/level1/div_lvl1_q2.json", "string":"Congrats correct answer"},
-      {"key":"*", "value":"division/level1/div_lvl1_q2.json", "string":"wrong answer"}
-  ],
-  "uid":"div_lvl1_1"
-}

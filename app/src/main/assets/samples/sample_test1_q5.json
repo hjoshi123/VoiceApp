@@ -1,7 +1,0 @@
-{
-  "string_to_speak": "what is 10 + 19",
-  "hashmap": [
-      {"key":"29", "value":"sample_test1_q6.json", "string":"Congrats correct answer"},
-      {"key":"*", "value":"sample_test1_q6.json", "string":"wrong answer"}
-  ]
-}

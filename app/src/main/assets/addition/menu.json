@@ -1,9 +1,0 @@
-{
-  "string_to_speak": "Press 1 for easy addition, 2 for moderate addition and 3 for advanced addition",
-  "hashmap": [
-    {"key":"1", "value":"addition/level1/add_lvl1_q1.json", "string":""},
-    {"key":"2", "value":"addition/level2/add_lvl2_q1.json", "string":""},
-    {"key":"3", "value":"addition/level3/add_lvl3_q1.json", "string":""},
-    {"key":"*", "value":"addition/menu.json", "string":"Wrong input, try again"}
-  ]
-}

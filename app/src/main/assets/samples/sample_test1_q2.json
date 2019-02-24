@@ -1,7 +1,0 @@
-{
-  "string_to_speak": "what is 6 + 2",
-  "hashmap": [
-      {"key":"8", "value":"sample_test1_q3.json", "string":"Congrats correct answer"},
-      {"key":"*", "value":"sample_test1_q3.json", "string":"wrong answer"}
-  ]
-}

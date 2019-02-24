@@ -1,9 +1,0 @@
-{
-  "string_to_speak": "Press 1 for easy subtraction, 2 for moderate subtraction and 3 for advanced subtraction",
-  "hashmap": [
-    {"key":"1", "value":"subtraction/level1/sub_lvl1_q1.json", "string":""},
-    {"key":"2", "value":"subtraction/level2/sub_lvl2_q1.json", "string":""},
-    {"key":"3", "value":"subtraction/level3/sub_lvl3_q1.json", "string":""},
-    {"key":"*", "value":"subtraction/menu.json", "string":"Wrong input, try again"}
-  ]
-}

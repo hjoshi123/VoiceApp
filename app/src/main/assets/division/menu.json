@@ -1,9 +1,0 @@
-{
-  "string_to_speak": "Press 1 for easy division, 2 for moderate division and 3 for advanced division",
-  "hashmap": [
-    {"key":"1", "value":"division/level1/div_lvl1_q1.json", "string":""},
-    {"key":"2", "value":"division/level2/div_lvl2_q1.json", "string":""},
-    {"key":"3", "value":"division/level3/div_lvl3_q1.json", "string":""},
-    {"key":"*", "value":"division/menu.json", "string":"Wrong input, try again"}
-  ]
-}

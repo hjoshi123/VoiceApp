@@ -46,33 +46,40 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
-        if (mediaStorage.exists())
-            readDirectoryContents();
-
+        if (mediaStorage.exists()) {
             tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
                 @Override
                 public void onInit(int status) {
-                    if(status == TextToSpeech.SUCCESS){
-                        int result=tts.setLanguage(Locale.US);
-                        if(result==TextToSpeech.LANG_MISSING_DATA ||
-                                result==TextToSpeech.LANG_NOT_SUPPORTED){
+                    if (status == TextToSpeech.SUCCESS) {
+                        int result = tts.setLanguage(Locale.US);
+                        if (result == TextToSpeech.LANG_MISSING_DATA ||
+                                result == TextToSpeech.LANG_NOT_SUPPORTED) {
                             Log.e("error", "This Language is not supported");
-                        }
-                        else{
+                        } else {
                             mState = getFileState("state1.json");
                             assert mState != null;
                             convertTextToSpeech(mState.speakOnStart);
                         }
-                    }
-                    else
+                    } else
                         Log.e("error", "Initilization Failed!");
                 }
             });
+        }
     }
 
-    private State getFileState(String fileName) {
-        String path = Environment.getExternalStorageDirectory() + "/own";
-        File directory = new File(path);
+    private State getFileState(String nextPath) {
+        StringBuilder path = new StringBuilder(Environment.getExternalStorageDirectory() + "/own");
+        String[] fileDetails = null;
+        if (nextPath.contains("/")) {
+            path.append("/");
+            fileDetails = nextPath.split("/");
+            for (String path1 : fileDetails) {
+                if (!fileDetails[fileDetails.length - 1].equals(path1))
+                    path.append(path1).append("/");
+            }
+            Log.d("PATH", String.valueOf(path));
+        }
+        File directory = new File(path.toString());
 
         // Reading files inside root directory
         File[] files = directory.listFiles(new FileFilter() {
@@ -83,43 +90,52 @@ public class MainActivity extends AppCompatActivity {
         });
 
         for (File f : files) {
-            if (f.getName().equals(fileName)) {
-                State helloState = SM.getState(f.getPath());
-                Log.d("MainAcContent", helloState.speakOnStart);
-                return helloState;
+            if (nextPath.contains("/")) {
+                if (f.getName().equals(fileDetails[fileDetails.length - 1])) {
+                    State helloState = SM.getState(f.getPath());
+                    Log.d("MainAcContent", helloState.speakOnStart);
+                    return helloState;
+                }
+            } else {
+                if (f.getName().equals(nextPath)) {
+                    State helloState = SM.getState(f.getPath());
+                    Log.d("MainAcContent", helloState.speakOnStart);
+                    return helloState;
+                }
             }
+
         }
         return null;
     }
 
-    private void readDirectoryContents() {
-        String path = Environment.getExternalStorageDirectory() + "/own";
-        File directory = new File(path);
-
-        // Reading files inside sub directory of the root
-        File[] directories = directory.listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File file) {
-                return file.isDirectory();
-            }
-        });
-
-        for (File directory1 : directories) {
-            Log.d("MainAc", directory1.getName());
-            File file = new File(Environment.getExternalStorageDirectory() + "/own/" + directory1.getName());
-            File[] list = file.listFiles(new FileFilter() {
-                @Override
-                public boolean accept(File file) {
-                    return file.isFile();
-                }
-            });
-            for (File f : list) {
-                Log.d("MainRoot", f.getParent());
-                State helloState = SM.getState(f.getPath());
-                Log.d("MainAcContent", helloState.speakOnStart);
-            }
-        }
-    }
+//    private void readDirectoryContents() {
+//        String path = Environment.getExternalStorageDirectory() + "/own";
+//        File directory = new File(path);
+//
+//        // Reading files inside sub directory of the root
+//        File[] directories = directory.listFiles(new FileFilter() {
+//            @Override
+//            public boolean accept(File file) {
+//                return file.isDirectory();
+//            }
+//        });
+//
+//        for (File directory1 : directories) {
+//            Log.d("MainAc", directory1.getName());
+//            File file = new File(Environment.getExternalStorageDirectory() + "/own/" + directory1.getName());
+//            File[] list = file.listFiles(new FileFilter() {
+//                @Override
+//                public boolean accept(File file) {
+//                    return file.isFile();
+//                }
+//            });
+//            for (File f : list) {
+//                Log.d("MainRoot", f.getParent());
+//                State helloState = SM.getState(f.getPath());
+//                Log.d("MainAcContent", helloState.speakOnStart);
+//            }
+//        }
+//    }
 
     private void convertTextToSpeech(String text) {
         if(text==null||"".equals(text)) {
@@ -141,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("MainActivity", object.getString());
                     toSpeak = object.getString();
                     tts.speak(toSpeak, TextToSpeech.QUEUE_ADD, null, null);
-                    mState = SM.getState(object.getValue());
+                    mState = getFileState(object.getValue());
                     flag = true;
                     break;
                 }
@@ -154,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                     if (object.getKey().equals("*")) {
                         toSpeak = object.getString();
                         convertTextToSpeech(toSpeak);
-                        mState = SM.getState(object.getValue());
+                        mState = getFileState(object.getValue());
                     }
                 }
             }

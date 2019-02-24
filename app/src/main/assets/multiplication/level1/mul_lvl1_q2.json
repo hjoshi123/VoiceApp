@@ -1,8 +1,0 @@
-{
-  "string_to_speak": "what is 3 * 3 ?",
-  "hashmap": [
-      {"key":"9", "value":"multiplication/level1/mul_lvl1_q3.json", "string":"Congrats correct answer"},
-      {"key":"*", "value":"multiplication/level1/mul_lvl1_q3.json", "string":"wrong answer"}
-  ],
-  "uid":"mul_lvl1_1"
-}

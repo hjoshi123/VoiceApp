@@ -1,7 +1,0 @@
-{
-  "string_to_speak": "Press the number Key 1",
-  "hashmap": [
-      {"key":"1", "value":"learn_keyboard_q2.json", "string":"Congrats"},
-      {"key":"*", "value":"learn_keyboard_q1.json", "string":"Let's try again"}
-  ]
-}

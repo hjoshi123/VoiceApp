@@ -1,8 +1,0 @@
-{
-  "string_to_speak": "what is 8 - 8 ?",
-  "hashmap": [
-      {"key":"0", "value":"subtraction/level1/sub_lvl1_q5.json", "string":"Congrats correct answer"},
-      {"key":"*", "value":"subtraction/level1/sub_lvl1_q5.json", "string":"wrong answer"}
-  ],
-  "uid":"sub_lvl1_1"
-}
