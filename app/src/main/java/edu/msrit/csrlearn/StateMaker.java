@@ -47,7 +47,7 @@ class StateMaker {
 
         } catch (IOException e){
             e.printStackTrace();
-            newState.speakOnStart = "we are dead";
+            newState.speakOnStart = "File not Found";
             newState.keys = null;
             return newState;
         }
