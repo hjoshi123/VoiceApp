@@ -1,0 +1,8 @@
+{
+  "string_to_speak": "what is 18 + 9 ?",
+  "hashmap": [
+      {"key":"27", "value":"addition/level3/add_lvl3_q5.json", "string":"Congrats correct answer"},
+      {"key":"*", "value":"addition/level3/add_lvl3_q5.json", "string":"wrong answer"}
+  ],
+  "uid":"add_lvl3_1"
+}

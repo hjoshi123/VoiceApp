@@ -1,0 +1,8 @@
+{
+  "string_to_speak": "what is 11 + 5 ?",
+  "hashmap": [
+      {"key":"16", "value":"addition/level2/add_lvl2_q4.json", "string":"Congrats correct answer"},
+      {"key":"*", "value":"addition/level2/add_lvl2_q4.json", "string":"wrong answer"}
+  ],
+  "uid":"add_lvl2_1"
+}

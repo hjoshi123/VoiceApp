@@ -1,0 +1,8 @@
+{
+  "string_to_speak": "what is 14 + 14 ?",
+  "hashmap": [
+      {"key":"28", "value":"addition/level3/add_lvl3_q4.json", "string":"Congrats correct answer"},
+      {"key":"*", "value":"addition/level3/add_lvl3_q4.json", "string":"wrong answer"}
+  ],
+  "uid":"add_lvl3_1"
+}

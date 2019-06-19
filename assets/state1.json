@@ -1,0 +1,12 @@
+{
+  "string_to_speak": "Welcome to the CSR Learn App. Press 1 for learning keyboard. Press 2 for Addition, 3 for subtraction, 4 for multiplication, 5 for division, 6 for custom exercises",
+  "hashmap": [
+    {"key":"1", "value":"learn_keyboard.json", "string":""},
+    {"key":"2", "value":"addition/menu.json", "string":"Congrats, you selected to learn addition"},
+    {"key":"3", "value":"subtraction/menu.json", "string":"Congrats, you selected to learn subtraction"},
+    {"key":"4", "value":"multiplication/menu.json", "string":"Congrats, you selected to learn multiplication"},
+    {"key":"5", "value":"division/menu.json", "string":"Congrats, you selected to learn division"},
+    {"key":"6", "value":"own/menu.json", "string":"Own exercises"},
+    {"key":"*", "value":"state1.json", "string":"Unidentified input, please try again"}
+  ]
+}

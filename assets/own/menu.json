@@ -1,0 +1,10 @@
+{
+    "string_to_speak": "Press 1 for Addition, 2 for subtraction, 3 for multiplication, 4 for division",
+    "hashmap": [
+      {"key":"1", "value":"own/Addition/menu.json", "string":"Congrats, you selected to learn addition"},
+      {"key":"2", "value":"own/Subtraction/menu.json", "string":"Congrats, you selected to learn subtraction"},
+      {"key":"3", "value":"own/Multiplication/menu.json", "string":"Congrats, you selected to learn multiplication"},
+      {"key":"4", "value":"own/Division/menu.json", "string":"Congrats, you selected to learn division"},
+      {"key":"*", "value":"own/menu.json", "string":"Unidentified input, please try again"}
+    ]
+}

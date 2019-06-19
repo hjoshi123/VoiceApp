@@ -1,0 +1,8 @@
+{
+  "string_to_speak": "what is 17 - 4 ?",
+  "hashmap": [
+      {"key":"13", "value":"state1.json", "string":"Congrats correct answer"},
+      {"key":"*", "value":"state1.json", "string":"wrong answer"}
+  ],
+  "uid":"sub_lvl2_1"
+}

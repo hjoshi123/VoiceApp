@@ -1,0 +1,6 @@
+{
+  "string_to_speak": "Congrats !!! you have decided to learn our Keyboard.I will tell you a number. All you have to do is to press the key that indicates the number. Before that, Let me help you.. Press any key to continue !!!",
+  "hashmap": [
+    {"key":"*", "value":"learn_keyboard_q1.json", "string":"Here is your first question"}
+  ]
+}

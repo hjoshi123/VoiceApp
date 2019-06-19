@@ -1,0 +1,7 @@
+{
+  "string_to_speak": "what is 5 + 5",
+  "hashmap": [
+      {"key":"10", "value":"sample_test1_q5.json", "string":"Congrats correct answer"},
+      {"key":"*", "value":"sample_test1_q5.json", "string":"wrong answer"}
+  ]
+}
