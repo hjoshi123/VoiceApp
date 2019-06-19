@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         SM = new StateMaker(getApplicationContext());
 
-        File mediaStorage = new File(Environment.getExternalStorageDirectory(), "own");
+        File mediaStorage = new File(Environment.getExternalStorageDirectory(), "assets");
         if (!mediaStorage.exists()) {
             if (!mediaStorage.mkdirs()) {
                 Log.d("MainActivity", "Failed to create directory");
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private State getFileState(String nextPath) {
-        StringBuilder path = new StringBuilder(Environment.getExternalStorageDirectory() + "/own");
+        StringBuilder path = new StringBuilder(Environment.getExternalStorageDirectory() + "/assets");
         String[] fileDetails = null;
         if (nextPath.contains("/")) {
             path.append("/");
@@ -106,35 +106,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return null;
     }
-
-//    private void readDirectoryContents() {
-//        String path = Environment.getExternalStorageDirectory() + "/own";
-//        File directory = new File(path);
-//
-//        // Reading files inside sub directory of the root
-//        File[] directories = directory.listFiles(new FileFilter() {
-//            @Override
-//            public boolean accept(File file) {
-//                return file.isDirectory();
-//            }
-//        });
-//
-//        for (File directory1 : directories) {
-//            Log.d("MainAc", directory1.getName());
-//            File file = new File(Environment.getExternalStorageDirectory() + "/own/" + directory1.getName());
-//            File[] list = file.listFiles(new FileFilter() {
-//                @Override
-//                public boolean accept(File file) {
-//                    return file.isFile();
-//                }
-//            });
-//            for (File f : list) {
-//                Log.d("MainRoot", f.getParent());
-//                State helloState = SM.getState(f.getPath());
-//                Log.d("MainAcContent", helloState.speakOnStart);
-//            }
-//        }
-//    }
 
     private void convertTextToSpeech(String text) {
         if(text==null||"".equals(text)) {
