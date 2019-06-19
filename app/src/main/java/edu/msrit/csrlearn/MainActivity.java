@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
                     return helloState;
                 }
             }
-
         }
         return null;
     }
@@ -161,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
                     flag = true;
                     break;
                 }
-
             }
 
             if (!flag) {
