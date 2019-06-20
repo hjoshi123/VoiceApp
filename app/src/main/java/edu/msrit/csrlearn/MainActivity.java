@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                                 result == TextToSpeech.LANG_NOT_SUPPORTED) {
                             Log.e("error", "This Language is not supported");
                         } else {
+                            tts.setSpeechRate(0.7f);
                             mState = getFileState("state1.json");
                             assert mState != null;
                             convertTextToSpeech(mState.speakOnStart);
